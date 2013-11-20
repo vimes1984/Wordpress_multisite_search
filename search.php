@@ -38,61 +38,7 @@ get_header();
 
                   if ($search->found_posts>0) {
                          foreach ( $search->posts as $post ) {
-                                setup_postdata($post);
-                                $author_data = get_userdata(get_the_author_meta('ID'));
-                                $currentblog = $post->site_ID;
-                                switch_to_blog($currentblog);
-                                $fwpicture = cd_post_picture(616, 296,NULL,NULL,true);
-                                $npicture = cd_post_picture(null, null,NULL,NULL,true);
-                                $cd_get_permalink = get_permalink($post->ID);
-                                $postx = $post;
-                                $blog_details = get_blog_details($post->site_ID);
-                                $getpostinfo = get_post($post->ID);
-                                $cd_opo_full_width = get_post_meta($post->ID, 'cd_opo_full_width', true);
-                                $cd_opo_video = get_post_meta($post->ID, 'cd_opo_video', true);
-                                if (strpos($cd_opo_video, 'youtu') > 0) {
-                                    $cd_opo_video = youtube_id_from_url($cd_opo_video);
-                                    $cd_opo_video = '<iframe width="600" height="338" src="http://www.youtube.com/embed/' . $cd_opo_video . '" frameborder="0" allowfullscreen></iframe>';
-                                }
-
-                                $CD_class = '';
-                                if ($cd_opo_full_width == "on") {
-                                    $CD_class = " full-width ";
-                                }
-                                $xclass = " " . get_blog_option($post->site_ID, 'cd_op_color') . " ";
-                                ?>
-
-                                <div class="post <?php echo $xclass . $CD_class; ?>">
-                                    <h1 class="title"><a href="<?php echo $cd_get_permalink; ?>"><?php the_title(); ?></a></h1>
-                                    <div class="meta-options">Postet i 
-                                        <a href="<?php echo $blog_details->siteurl ?>" class="child-blog"><?php echo strtolower($blog_details->blogname); ?></a> 
-                                        <?php echo get_the_date(); ?> av <?php echo cd_get_author($post); ?></div>
-                                    <?php get_template_part('social'); ?>
-                                    <?php
-                                    if ($cd_opo_full_width == "on") {
-                                        if ($cd_opo_video == "") {
-
-                                            echo $fwpicture;
-                                        }else
-                                            echo $cd_opo_video;
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($cd_opo_full_width == "") {
-                                        if ($cd_opo_video == "") {
-                                            cd_post_picture();
-                                        }else
-                                            echo $cd_opo_video;
-                                    }
-                                    ?>
-                                    <div class="text">
-                                        <p class="desc">
-                                            <?php the_excerpt();?>
-                                        </p>
-                                        <div class="more"><a href="<?php echo $cd_get_permalink; ?>">FORTSETT Å LESE ></a></div>
-                                    </div>
-
-                                </div>
+                               //POST CONTENT TO GO HERE SUCH AS EXCERPT FEATURED IMAGE ETC
                                 <?php
                                 $post = $postx;
                                 wp_reset_postdata();
